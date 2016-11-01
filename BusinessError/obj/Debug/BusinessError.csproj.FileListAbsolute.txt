@@ -1,0 +1,10 @@
+C:\cours\AppliAvecCouches\BusinessError\bin\Debug\BusinessError.dll
+C:\cours\AppliAvecCouches\BusinessError\bin\Debug\BusinessError.pdb
+C:\cours\AppliAvecCouches\BusinessError\obj\Debug\BusinessError.csprojResolveAssemblyReference.cache
+C:\cours\AppliAvecCouches\BusinessError\obj\Debug\BusinessError.dll
+C:\cours\AppliAvecCouches\BusinessError\obj\Debug\BusinessError.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessError\bin\Debug\BusinessError.dll
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessError\bin\Debug\BusinessError.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessError\obj\Debug\BusinessError.csprojResolveAssemblyReference.cache
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessError\obj\Debug\BusinessError.dll
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessError\obj\Debug\BusinessError.pdb
