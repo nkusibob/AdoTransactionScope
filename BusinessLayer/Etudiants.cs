@@ -14,7 +14,11 @@ namespace BusinessLayer
 
         public static void SaveALL(DataView poViewData)
         {
-            using (TransactionScope ts = DataAccessLayer.clsDatabase.CreateSeriazable())
+            //default isolation level for transaction scope is already seraizable
+            //if yu delete a row and try to update it within another form
+            //it throws a business error explaining the row has been already deleted it doesn't exist anymore
+            //i gave the choice in DATALAYER in DataBase.CS to configure isolation level
+            using (TransactionScope ts = DataAccessLayer.clsDatabase.CreateReadUncommitted())
             {
 
                 try

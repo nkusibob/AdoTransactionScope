@@ -28,8 +28,8 @@ namespace DataAccessLayer
             set
             { }
         }
-        public static TransactionScope CreateReadCommitted()
-        {
+      public static TransactionScope CreateReadCommitted()
+       {
             var options = new TransactionOptions
             {
                 IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted,
@@ -48,6 +48,35 @@ namespace DataAccessLayer
 
             return new TransactionScope(TransactionScopeOption.Required, options);
         }
+        public static TransactionScope CreateReadUncommitted()
+        {
+            var options = new TransactionOptions
+            {
+                IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted,
+                Timeout = TransactionManager.DefaultTimeout
+            };
 
+            return new TransactionScope(TransactionScopeOption.Required, options);
+        }
+        public static TransactionScope RepeatableRead()
+        {
+            var options = new TransactionOptions
+            {
+                IsolationLevel = System.Transactions.IsolationLevel.RepeatableRead,
+                Timeout = TransactionManager.DefaultTimeout
+            };
+
+            return new TransactionScope(TransactionScopeOption.Required, options);
+        }
+        public static TransactionScope Snapshot()
+        {
+            var options = new TransactionOptions
+            {
+                IsolationLevel = System.Transactions.IsolationLevel.Snapshot,
+                Timeout = TransactionManager.DefaultTimeout
+            };
+
+            return new TransactionScope(TransactionScopeOption.Required, options);
+        }
     }
 }

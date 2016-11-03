@@ -345,14 +345,7 @@ namespace DataAccessLayer
                 throw new BusinessError.CustomError(IdError);
 
             }
-            catch (Exception ex)
-            {
-                int IdError = 999;
-
-                throw new BusinessError.CustomError(IdError);
-
-
-            }
+            
             finally
             {
                 clsDatabase.oDataBase.Close();
