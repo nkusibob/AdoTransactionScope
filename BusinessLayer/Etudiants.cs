@@ -16,7 +16,7 @@ namespace BusinessLayer
         {
             using (TransactionScope ts = DataAccessLayer.clsDatabase.CreateSeriazable())
             {
-               
+
                 try
                 {
                     //On récupère les rows deleted
@@ -74,16 +74,18 @@ namespace BusinessLayer
 
 
 
-
-        public static void FindMatricule(ref List<BusinessEntity.Etudiant> pEtudiants, string pSearch)
+        
+        public static void  FindMatricule( string pSearch)
         {
+            DataSet oData;
             if (pSearch.Length < 3)
                 throw new BusinessError.CustomError(4);
-
+           oData=DataAccessLayer.Etudiants.SelectByMatricule(pSearch);
+           
 
         }
 
-
+        
         public static void LoadAllMatricule(ref DataSet oDataSet)
         {
             DataSet oData;
@@ -91,6 +93,22 @@ namespace BusinessLayer
             try
             {
                 oData = DataAccessLayer.Etudiants.LoadAllMatricule();
+
+                oDataSet = oData;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void SelectByMatricule(ref DataSet oDataSet)
+        {
+            DataSet oData;
+
+            try
+            {
+                oData = DataAccessLayer.Etudiants.SelectByMatricule();
 
                 oDataSet = oData;
             }

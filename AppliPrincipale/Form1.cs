@@ -67,11 +67,40 @@ namespace AppliPrincipale
 
                 if (txtMatricule.Text.Length < 3)
                     throw new BusinessError.CustomError(4);
-                List<BusinessEntity.Etudiant> ListEtudiants = new List<BusinessEntity.Etudiant>();
-                BusinessLayer.Etudiants.LoadAllMatricule(ref ListEtudiants);
 
-                
-                BusinessLayer.Etudiants.FindMatricule(ref ListEtudiants, txtMatricule.Text);
+
+                DataSet
+                    oData = new DataSet();
+
+                BusinessLayer.Etudiants.LoadAllMatricule(ref oData);
+                string search = "ETU_MATRICULE like '%" + txtMatricule.Text + "%'";
+                var dt = oData.Tables[0].DefaultView;
+                var dt2= oData.Tables[0].DefaultView;
+                var dt3= oData.Tables[0].DefaultView;
+                dt.RowFilter = search;
+               
+
+                if (dt.Count==0)
+                {
+
+                     dt2= oData.Tables[0].DefaultView;
+                    search = "ETU_NOM like '%" + txtMatricule.Text + "%'";
+                    dt2= oData.Tables[0].DefaultView;
+                   dt2.RowFilter = search;
+
+                }
+              if(dt2.Count == 0)
+                {
+
+                    search = "ETU_PRENOM like '%" + txtMatricule.Text + "%'";
+                    dt3 = oData.Tables[0].DefaultView;
+                    dt3.RowFilter = search;
+
+                }
+
+
+
+                gridData.DataSource = dt;
             }
             catch( Exception ex)
             {

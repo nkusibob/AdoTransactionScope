@@ -15,8 +15,58 @@ namespace DataAccessLayer
 
     public static class Etudiants
     {
-        
-        
+
+        public static void SelectByMatricule(DataSet poData)
+        {
+            SqlCommand oSelect
+                = new SqlCommand();
+
+            SqlDataAdapter oDataAdapter = new SqlDataAdapter();
+
+            try
+            {
+                clsDatabase.oDataBase.Open();
+
+                oSelect.Connection = clsDatabase.oDataBase;
+
+                oSelect.CommandType = CommandType.StoredProcedure;
+                oSelect.CommandText = "ETU_SelectByMatricule";
+
+                oDataAdapter.SelectCommand = oSelect;
+
+                oDataAdapter.Fill(poData, "MesMatricule");
+
+            }
+            catch (SqlException exSQL)
+            {
+                int IdError = 999;
+                switch (exSQL.Number)
+                {
+                    case 18456:
+                        IdError = 1;
+                        break;
+                }
+
+                throw new BusinessError.CustomError(IdError);
+
+            }
+            catch (Exception ex)
+            {
+                int IdError = 999;
+
+                throw new BusinessError.CustomError(IdError);
+
+
+            }
+            finally
+            {
+                clsDatabase.oDataBase.Close();
+            }
+
+
+
+
+        }
         public static void LoadAllMatricule( DataSet poData)
         {
             SqlCommand oSelect
@@ -131,6 +181,14 @@ namespace DataAccessLayer
             }
         }
 
+        public static DataSet SelectByMatricule()
+        {
+            DataSet oData = new DataSet();
+            string matr="";
+            oData=SelectByMatricule(matr);
+            return oData;
+        }
+
         public static DataSet LoadAllMatricule()
         {
             DataSet oData = new DataSet();
@@ -184,7 +242,65 @@ namespace DataAccessLayer
             }
 
         }
+        public static DataSet SelectByMatricule(string matr)
+        {
+            SqlCommand oUpd
+                = new SqlCommand();
+            SqlDataAdapter oDataAdapter = new SqlDataAdapter();
+            DataSet oData = new DataSet();
 
+            try
+            {
+                clsDatabase.oDataBase.Open();
+
+                oUpd.Connection = clsDatabase.oDataBase;
+
+                oUpd.CommandType = CommandType.StoredProcedure;
+                oUpd.CommandText = "ETU_SelectByMatricule";
+
+                SqlParameter oParamMatricule = new SqlParameter("@matr", matr);
+                oUpd.Parameters.Add(oParamMatricule);
+                oDataAdapter.SelectCommand = oUpd;
+
+                oDataAdapter.Fill(oData, "MesMatricule");
+
+               
+             
+              
+
+        
+                return oData;
+            }
+            catch (SqlException exSQL)
+            {
+                int IdError = 999;
+                switch (exSQL.Number)
+                {
+                    case 18456:
+                        IdError = 1;
+                        break;
+                    case 8152:
+                        IdError = 5;
+                        break;
+                }
+
+                throw new BusinessError.CustomError(IdError);
+
+            }
+            catch (Exception ex)
+            {
+                int IdError = 999;
+
+                throw new BusinessError.CustomError(IdError);
+
+
+            }
+            finally
+            {
+                clsDatabase.oDataBase.Close();
+
+            }
+        }
         public static void UpdateMatricule(string pMAtricule, int pID)
         {
             SqlCommand oUpd
