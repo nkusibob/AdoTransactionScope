@@ -40,6 +40,7 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -153,11 +154,22 @@
             this.newToolStripMenuItem.Text = "new";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(674, 432);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(153, 54);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "SaveAllTrans";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 521);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btSaveAll);
             this.Controls.Add(this.btSearch);
             this.Controls.Add(this.txtMatricule);
@@ -193,6 +205,7 @@
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 

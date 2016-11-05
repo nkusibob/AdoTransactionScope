@@ -76,9 +76,85 @@ namespace BusinessLayer
 
         }
 
+        public static void SaveAllTrans(DataView poViewData)
+        {
+            //default isolation level for transaction scope is already seraizable
+            //if yu delete a row and try to update it within another form
+            //it throws a business error explaining the row has been already deleted it doesn't exist anymore
+            //i gave the choice in DATALAYER in DataBase.CS to configure isolation level
+            
+
+                try
+                {
+                    //On récupère les rows deleted
+
+                    poViewData.RowStateFilter = DataViewRowState.Deleted;
+                    List<int> ToDel = new List<int>();
+                    foreach (DataRowView oRow in poViewData)
+                    {
+                        Console.WriteLine(oRow["ETU_ID"].ToString());
+                        int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
+                        string MATRICULE = oRow["ETU_MATRICULE"].ToString();
+                        ToDel.Add(ID);
+                        //DataAccessLayer.Etudiants.DeleteFromID(ID);
+                       
+                    }
+
+                    poViewData.RowStateFilter = DataViewRowState.ModifiedCurrent;
+
+                    //Data.Etudiant odataEtu = new Data.Etudiant();
+                    List<BusinessEntity.Etudiant> listEtu = new List<BusinessEntity.Etudiant>();
+                    foreach (DataRowView oRow in poViewData)
+
+                    {
+                        MessageBox.Show(oRow["ETU_ID"].ToString());
+                        int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
+                        string Matricule = oRow["ETU_MATRICULE"].ToString();
+                       
+
+                        if (Matricule.Length < 5)
+                            throw new BusinessError.CustomError(3);
+                        BusinessEntity.Etudiant oEtu = new BusinessEntity.Etudiant();
+                        oEtu.Matricule = Matricule;
+                        oEtu.ID = ID;
+                        listEtu.Add(oEtu);
 
 
-        
+                    }
+               
+
+                poViewData.RowStateFilter = DataViewRowState.Added;
+                List<BusinessEntity.Etudiant> listToAdd= new List<BusinessEntity.Etudiant>();
+                foreach (DataRowView oRow in poViewData)
+                    {
+                        int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
+                        string matricule = oRow["ETU_MATRICULE"].ToString();
+                        string nom = oRow["ETU_nom"].ToString();
+                        string prenom = oRow["ETU_prenom"].ToString();
+                        if (matricule.Length < 5)
+                            throw new BusinessError.CustomError(3);
+                        BusinessEntity.Etudiant oEtu = new BusinessEntity.Etudiant();
+                        oEtu.Matricule = matricule;
+                        oEtu.ID = ID;
+                        oEtu.DisplayName = nom + prenom;
+                        listToAdd.Add(oEtu);
+                       // DataAccessLayer.Etudiants.InsertETU(matricule, nom, prenom);
+
+                    }
+
+                DataAccessLayer.Etudiants.SaveAll(ToDel, listEtu, listToAdd);
+            }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+
+
+            }
+
+       
+
+
         public static void  FindMatricule( string pSearch)
         {
             DataSet oData;

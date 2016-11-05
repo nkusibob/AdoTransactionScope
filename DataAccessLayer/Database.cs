@@ -28,7 +28,33 @@ namespace DataAccessLayer
             set
             { }
         }
-      public static TransactionScope CreateReadCommitted()
+        public static SqlTransaction _oTrans;
+        public static void BeginTrans()
+        {
+            _oTrans = _oDataBase.BeginTransaction();
+        }
+        public static void RollBack()
+        {
+            _oTrans.Rollback();
+        }
+        public static void commit()
+        {
+            _oTrans.Commit();
+        }
+      
+        public static SqlTransaction MyTansaction
+        {
+            get
+            {
+                
+                return _oTrans;
+            }
+
+            set
+            { }
+        }
+
+        public static TransactionScope CreateReadCommitted()
        {
             var options = new TransactionOptions
             {

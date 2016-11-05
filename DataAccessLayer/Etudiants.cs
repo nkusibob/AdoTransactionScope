@@ -15,6 +15,131 @@ namespace DataAccessLayer
 
     public static class Etudiants
     {
+        public static void SaveAll(List<int> lstToDelete, List<BusinessEntity.Etudiant> ListToUpdate, List<BusinessEntity.Etudiant> ListToInsert)
+        {
+            SqlCommand oUpd
+               = null;
+            SqlCommand oDel
+              = null;
+            
+            SqlCommand oIns
+              = null;
+            SqlTransaction oTrans=null;
+
+            try
+            {
+                //delete
+                 clsDatabase.oDataBase.Open();
+                 oTrans = clsDatabase.oDataBase.BeginTransaction();
+
+                foreach (var ID in lstToDelete)
+                {
+                   
+                    oDel = new SqlCommand();
+                    oDel.Connection = clsDatabase.oDataBase;
+                    oDel.Transaction = oTrans;
+                    oDel.CommandType = CommandType.StoredProcedure;
+                    oDel.CommandText = "EtuDeleteById";
+                    SqlParameter oParamID = new SqlParameter("@id", ID);
+
+
+
+                    oDel.Parameters.Add(oParamID);
+
+                    int RowsDeleted = oDel.ExecuteNonQuery();
+
+                    if (RowsDeleted == 0)
+                        throw new BusinessError.CustomError(5);
+
+                   
+                }
+                //uodate
+
+                foreach (var etu in ListToUpdate)
+                {
+                    oUpd = new SqlCommand();
+                    oUpd.Connection = clsDatabase.oDataBase;
+                    oUpd.Transaction = oTrans;
+                    oUpd.CommandType = CommandType.StoredProcedure;
+                    oUpd.CommandText = "UpdateByID";
+                    SqlParameter oParamMatricule = new SqlParameter("@Matricule", etu.Matricule);
+                    SqlParameter oParamID = new SqlParameter("@ID", etu.ID);
+
+
+                    oUpd.Parameters.Add(oParamMatricule);
+                    oUpd.Parameters.Add(oParamID);
+
+                    int RowsModified = oUpd.ExecuteNonQuery();
+
+                    if (RowsModified == 0)
+                    {
+                        //tout erreur logique il faut aussi faire le commit
+                        oTrans.Commit();
+                        throw new BusinessError.CustomError(5);
+                    }
+                    
+
+                }
+
+                //insert
+                foreach (var etu in ListToInsert)
+                {
+                    oIns = new SqlCommand();
+                    oIns.Connection = clsDatabase.oDataBase;
+                    oIns.Transaction = oTrans;
+                    oIns.CommandType = CommandType.StoredProcedure;
+                    oIns.CommandText = "Etu_Create";
+                    SqlParameter oParamMatricule = new SqlParameter("@matricule", etu.Matricule);
+                    SqlParameter oParamNom = new SqlParameter("@nom", etu.DisplayName);
+                    SqlParameter oParamPrenom = new SqlParameter("@prenom", etu.DisplayName);
+
+
+
+                    oIns.Parameters.Add(oParamMatricule);
+                    oIns.Parameters.Add(oParamNom);
+                    oIns.Parameters.Add(oParamPrenom);
+
+                    int RowsModified =  oIns.ExecuteNonQuery();
+
+                    if (RowsModified == 0)
+                    {
+                        //tout erreur logique il faut aussi faire le commit
+                        oTrans.Commit();
+                        throw new BusinessError.CustomError(5);
+                    }
+
+                }
+                oTrans.Commit();
+
+            }
+
+            catch (SqlException exSQL)
+            {
+                //roll back avant n'importe quel traitement 
+                //après on renvoie l'erreur business,...
+                oTrans.Rollback();
+                int IdError = 999;
+                switch (exSQL.Number)
+                {
+                    case 18456:
+                        IdError = 1;
+                        break;
+                    case 8152:
+                        IdError = 5;
+                        break;
+                }
+
+                throw new BusinessError.CustomError(IdError);
+
+            }
+
+            finally
+            {
+                //clsDatabase.oDataBase.Close();
+
+            }
+
+        }
 
         public static void SelectByMatricule(DataSet poData)
         {
@@ -346,6 +471,69 @@ namespace DataAccessLayer
 
             }
             
+            finally
+            {
+                clsDatabase.oDataBase.Close();
+
+            }
+
+        }
+        public static void UpdateAllMatricule(List<BusinessEntity.Etudiant> listEtu)
+        {
+            SqlCommand oUpd
+                = new SqlCommand();
+            SqlTransaction oTrans=null;
+
+            try
+            {
+                clsDatabase.oDataBase.Open();
+                oTrans = clsDatabase.oDataBase.BeginTransaction();
+                oUpd.Connection = clsDatabase.oDataBase;
+                oUpd.Transaction = oTrans;
+                oUpd.CommandType = CommandType.StoredProcedure;
+                oUpd.CommandText = "UpdateByID";
+                foreach (var etu in listEtu)
+                {
+                    SqlParameter oParamMatricule = new SqlParameter("@Matricule", etu.Matricule);
+                    SqlParameter oParamID = new SqlParameter("@ID", etu.ID);
+
+
+                    oUpd.Parameters.Add(oParamMatricule);
+                    oUpd.Parameters.Add(oParamID);
+
+                    int RowsModified = oUpd.ExecuteNonQuery();
+
+                    if (RowsModified == 0)
+                    {
+                        //tout erreur logique il faut aussi faire le commit
+                        oTrans.Commit();
+                        throw new BusinessError.CustomError(5);
+                    }
+                        
+                }
+                oTrans.Commit();
+
+            }
+            catch (SqlException exSQL)
+            {
+                //roll back avant n'importe quel traitement 
+                //après on renvoie l'erreur business,...
+                oTrans.Rollback();
+                int IdError = 999;
+                switch (exSQL.Number)
+                {
+                    case 18456:
+                        IdError = 1;
+                        break;
+                    case 8152:
+                        IdError = 5;
+                        break;
+                }
+
+                throw new BusinessError.CustomError(IdError);
+
+            }
+
             finally
             {
                 clsDatabase.oDataBase.Close();

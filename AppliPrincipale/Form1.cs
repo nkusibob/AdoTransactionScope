@@ -121,5 +121,13 @@ namespace AppliPrincipale
             Form1 form = new Form1();
             form.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataView oView = (DataView)gridData.DataSource;
+
+            BusinessLayer.Etudiants.SaveAllTrans(oView);
+
+        }
     }
 }
