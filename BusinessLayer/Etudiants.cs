@@ -78,7 +78,7 @@ namespace BusinessLayer
 
         public static void SaveAllTrans(DataView poViewData)
         {
-            //default isolation level for transaction scope is already seraizable
+            //default isolation level for transaction scope is already seriazable
             //if yu delete a row and try to update it within another form
             //it throws a business error explaining the row has been already deleted it doesn't exist anymore
             //i gave the choice in DATALAYER in DataBase.CS to configure isolation level

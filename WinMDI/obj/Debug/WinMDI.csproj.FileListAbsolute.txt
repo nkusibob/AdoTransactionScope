@@ -1,0 +1,9 @@
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\bin\Debug\WinMDI.exe.config
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\bin\Debug\WinMDI.exe
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\bin\Debug\WinMDI.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.csprojResolveAssemblyReference.cache
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.Form1.resources
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.Properties.Resources.resources
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.csproj.GenerateResource.Cache
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.exe
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.pdb

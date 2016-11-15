@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppliPrincipale", "AppliPrincipale\AppliPrincipale.csproj", "{99D93370-8D4B-4166-8621-186191676B4B}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessEntity", "BusinessEntity\BusinessEntity.csproj", "{50C4C7EE-A50C-4C93-8466-6C4107F1D027}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessError", "BusinessError\BusinessError.csproj", "{B89EA447-9E76-4D17-AD71-EE22F987888F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinMDI", "WinMDI\WinMDI.csproj", "{58940ECF-5468-45E8-89B4-8703D9CBB4FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B89EA447-9E76-4D17-AD71-EE22F987888F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B89EA447-9E76-4D17-AD71-EE22F987888F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B89EA447-9E76-4D17-AD71-EE22F987888F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58940ECF-5468-45E8-89B4-8703D9CBB4FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58940ECF-5468-45E8-89B4-8703D9CBB4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58940ECF-5468-45E8-89B4-8703D9CBB4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58940ECF-5468-45E8-89B4-8703D9CBB4FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
