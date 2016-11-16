@@ -48,6 +48,15 @@ namespace BusinessError
                 case 7:
                     MyMessage = "l'id cours doit avoir au moins 4 caracteres";
                     break;
+                case 8:
+                    MyMessage = "des élèves suivent ce cours ,il ne peut donc être supprimmé";
+                    break;
+                case 9:
+                    MyMessage = "vous ne pouvez update le cours que par le code ";
+                    break;
+                case 10:
+                    MyMessage = "un cours avec cet id existe déjà";
+                    break;
                 default:
                     MyMessage = "Erreur non connue...";
                     _ID = 999;

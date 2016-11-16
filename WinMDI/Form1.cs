@@ -19,12 +19,14 @@ namespace WinMDI
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void coursToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CoursWinForm oForm = new CoursWinForm();
+
+            
             oForm.MdiParent = this;
             oForm.Show();
         }

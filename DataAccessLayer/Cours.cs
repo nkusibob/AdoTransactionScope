@@ -288,7 +288,7 @@ namespace DataAccessLayer
                     {
                         //tout erreur logique il faut aussi faire le commit
                         oTrans.Commit();
-                        throw new BusinessError.CustomError(5);
+                        throw new BusinessError.CustomError(9);
                     }
 
 
@@ -340,6 +340,12 @@ namespace DataAccessLayer
                     case 8152:
                         IdError = 5;
                         break;
+                    case 547:
+                        IdError = 8;
+                        break;
+                    case 2627:
+                        IdError = 10;
+                        break;
                 }
 
                 throw new BusinessError.CustomError(IdError);
@@ -348,7 +354,7 @@ namespace DataAccessLayer
 
             finally
             {
-                //clsDatabase.oDataBase.Close();
+                clsDatabase.oDataBase.Close();
 
             }
 
