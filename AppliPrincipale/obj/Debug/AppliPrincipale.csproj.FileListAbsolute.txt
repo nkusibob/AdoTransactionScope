@@ -15,3 +15,20 @@ C:\cours\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.Properties.R
 C:\cours\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.csproj.GenerateResource.Cache
 C:\cours\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.exe
 C:\cours\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\AppliPrincipale.exe.config
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\AppliPrincipale.exe
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\AppliPrincipale.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\BusinessEntity.dll
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\BusinessError.dll
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\BusinessLayer.dll
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\DataAccessLayer.dll
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\BusinessEntity.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\BusinessError.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\BusinessLayer.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\bin\Debug\DataAccessLayer.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.csprojResolveAssemblyReference.cache
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.Form1.resources
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.Properties.Resources.resources
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.csproj.GenerateResource.Cache
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.exe
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\AppliPrincipale\obj\Debug\AppliPrincipale.pdb

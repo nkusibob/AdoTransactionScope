@@ -77,6 +77,7 @@
             this.SaveALLMDI.TabIndex = 3;
             this.SaveALLMDI.Text = "SaveALL";
             this.SaveALLMDI.UseVisualStyleBackColor = true;
+            this.SaveALLMDI.Click += new System.EventHandler(this.SaveALLMDI_Click);
             // 
             // Form1
             // 

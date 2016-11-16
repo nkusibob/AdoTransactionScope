@@ -21,19 +21,21 @@ namespace WinMDI
         }
         public void loadCours()
         {
-            List<BusinessEntity.Cours> ListCours = new List<BusinessEntity.Cours>();
 
-            try
-            {
-                BusinessLayer.Cours.LoadAllCours(ref ListCours);
+            DataView oData = new DataView();
 
-                CoursGrid.DataSource = ListCours;
-              
-            }
-            catch (BusinessError.CustomError ex)
-            {
-                MessageBox.Show(ex.ID + "   " + ex.Message);
-            }
+            BusinessLayer.Cours.LoadAllMatricule(ref oData);
+
+            CoursGrid.DataSource = oData;
+        }
+
+        private void SaveCours_Click(object sender, EventArgs e)
+        {
+           
+
+            DataView oView = (DataView)CoursGrid.DataSource;
+
+            BusinessLayer.Cours.SaveAllTrans(oView);
         }
     }
 }

@@ -28,5 +28,10 @@ namespace WinMDI
             oForm.MdiParent = this;
             oForm.Show();
         }
+
+        private void SaveALLMDI_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
