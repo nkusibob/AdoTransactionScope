@@ -13,5 +13,7 @@ namespace BusinessEntity
         public string Matricule { get; set; }
 
         public string  DisplayName { get; set; }
+
+        public string cours { get; set; }
     }
 }

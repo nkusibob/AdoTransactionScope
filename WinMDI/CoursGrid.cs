@@ -10,11 +10,30 @@ using System.Windows.Forms;
 
 namespace WinMDI
 {
-    public partial class CoursGrid : Form
+    public partial class CoursWinForm : Form
     {
-        public CoursGrid()
+
+        public CoursWinForm()
         {
             InitializeComponent();
+            loadCours();
+
+        }
+        public void loadCours()
+        {
+            List<BusinessEntity.Cours> ListCours = new List<BusinessEntity.Cours>();
+
+            try
+            {
+                BusinessLayer.Cours.LoadAllCours(ref ListCours);
+
+                CoursGrid.DataSource = ListCours;
+              
+            }
+            catch (BusinessError.CustomError ex)
+            {
+                MessageBox.Show(ex.ID + "   " + ex.Message);
+            }
         }
     }
 }

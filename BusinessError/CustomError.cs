@@ -45,6 +45,9 @@ namespace BusinessError
                 case 6:
                     MyMessage = "aucune insertion n'a été effectuée";
                     break;
+                case 7:
+                    MyMessage = "l'id cours doit avoir au moins 4 caracteres";
+                    break;
                 default:
                     MyMessage = "Erreur non connue...";
                     _ID = 999;

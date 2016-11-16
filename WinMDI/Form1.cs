@@ -24,7 +24,7 @@ namespace WinMDI
 
         private void coursToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CoursGrid oForm = new CoursGrid();
+            CoursWinForm oForm = new CoursWinForm();
             oForm.MdiParent = this;
             oForm.Show();
         }

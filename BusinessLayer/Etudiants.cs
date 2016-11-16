@@ -230,6 +230,7 @@ namespace BusinessLayer
 
                 oEtudiant.ID = Convert.ToInt32(oRow["ETU_ID"]);
                 oEtudiant.Matricule = oRow["ETU_MATRICULE"].ToString();
+                oEtudiant.cours = oRow["cours"].ToString();
 
 
                 if (oEtudiant.Matricule.Length < 5)
@@ -242,5 +243,7 @@ namespace BusinessLayer
             }
 
         }
+     
+
     }
 }
