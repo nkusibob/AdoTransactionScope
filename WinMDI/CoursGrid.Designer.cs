@@ -31,6 +31,7 @@
             this.CoursGrid = new System.Windows.Forms.DataGridView();
             this.SaveCours = new System.Windows.Forms.Button();
             this.SearchCours = new System.Windows.Forms.TextBox();
+            this.btn_searchCours = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CoursGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,11 +60,22 @@
             this.SearchCours.Size = new System.Drawing.Size(146, 20);
             this.SearchCours.TabIndex = 2;
             // 
+            // btn_searchCours
+            // 
+            this.btn_searchCours.Location = new System.Drawing.Point(183, 12);
+            this.btn_searchCours.Name = "btn_searchCours";
+            this.btn_searchCours.Size = new System.Drawing.Size(75, 26);
+            this.btn_searchCours.TabIndex = 3;
+            this.btn_searchCours.Text = "search";
+            this.btn_searchCours.UseVisualStyleBackColor = true;
+            this.btn_searchCours.Click += new System.EventHandler(this.btn_searchCours_Click);
+            // 
             // CoursWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(496, 341);
+            this.Controls.Add(this.btn_searchCours);
             this.Controls.Add(this.SearchCours);
             this.Controls.Add(this.SaveCours);
             this.Controls.Add(this.CoursGrid);
@@ -80,5 +92,6 @@
         private System.Windows.Forms.DataGridView CoursGrid;
         private System.Windows.Forms.Button SaveCours;
         private System.Windows.Forms.TextBox SearchCours;
+        private System.Windows.Forms.Button btn_searchCours;
     }
 }

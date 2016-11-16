@@ -176,6 +176,108 @@ namespace DataAccessLayer
             }
 
         }
+        public static void UpdateLibellé(string libellé)
+        {
+            SqlCommand oUpd
+                = new SqlCommand();
+
+
+            try
+            {
+                clsDatabase.oDataBase.Open();
+
+                oUpd.Connection = clsDatabase.oDataBase;
+
+                oUpd.CommandType = CommandType.StoredProcedure;
+                oUpd.CommandText = "UpdateByLibellé";
+
+                SqlParameter oParamLibellé = new SqlParameter("@libelle", libellé);
+
+
+                oUpd.Parameters.Add(oParamLibellé);
+
+
+                int RowsModified = oUpd.ExecuteNonQuery();
+
+                if (RowsModified == 0)
+                    throw new BusinessError.CustomError(5);
+
+            }
+            catch (SqlException exSQL)
+            {
+                int IdError = 999;
+                switch (exSQL.Number)
+                {
+                    case 18456:
+                        IdError = 1;
+                        break;
+                    case 8152:
+                        IdError = 5;
+                        break;
+                }
+
+                throw new BusinessError.CustomError(IdError);
+
+            }
+
+            finally
+            {
+                clsDatabase.oDataBase.Close();
+
+            }
+
+        }
+        public static void UpdateId(string idCours)
+        {
+            SqlCommand oUpd
+                = new SqlCommand();
+
+
+            try
+            {
+                clsDatabase.oDataBase.Open();
+
+                oUpd.Connection = clsDatabase.oDataBase;
+
+                oUpd.CommandType = CommandType.StoredProcedure;
+                oUpd.CommandText = "UpdateByID";
+
+                SqlParameter oParamId = new SqlParameter("@idCours", idCours);
+
+
+                oUpd.Parameters.Add(oParamId);
+
+
+                int RowsModified = oUpd.ExecuteNonQuery();
+
+                if (RowsModified == 0)
+                    throw new BusinessError.CustomError(5);
+
+            }
+            catch (SqlException exSQL)
+            {
+                int IdError = 999;
+                switch (exSQL.Number)
+                {
+                    case 18456:
+                        IdError = 1;
+                        break;
+                    case 8152:
+                        IdError = 5;
+                        break;
+                }
+
+                throw new BusinessError.CustomError(IdError);
+
+            }
+
+            finally
+            {
+                clsDatabase.oDataBase.Close();
+
+            }
+
+        }
         public static void DeleteCode(string code)
         {
             SqlCommand oUpd
@@ -267,6 +369,7 @@ namespace DataAccessLayer
                 }
                 //uodate
 
+                int RowsModified1 = 0;
                 foreach (var cours in ListToUpdate)
                 {
                     oUpd = new SqlCommand();
@@ -282,14 +385,43 @@ namespace DataAccessLayer
                     oUpd.Parameters.Add(oParamCode);
                     oUpd.Parameters.Add(oParamLibellé);
 
-                    int RowsModified = oUpd.ExecuteNonQuery();
+                     RowsModified1 = oUpd.ExecuteNonQuery();
 
-                    if (RowsModified == 0)
-                    {
+                   
+
+
+                }
+                foreach (var cours in ListToUpdate)
+                {
+                    oUpd = new SqlCommand();
+                    oUpd.Connection = clsDatabase.oDataBase;
+                    oUpd.Transaction = oTrans;
+                    oUpd.CommandType = CommandType.StoredProcedure;
+                    oUpd.CommandText = "UpdateByLibellé";
+                    SqlParameter oParamLibellé = new SqlParameter("@Libellé", cours.libellé);
+                    SqlParameter oParamCode = new SqlParameter("@code", cours.code);
+                    SqlParameter oParamId = new SqlParameter("@idCours", cours.IdCours);
+
+
+
+                    oUpd.Parameters.Add(oParamCode);
+                    oUpd.Parameters.Add(oParamLibellé);
+                    oUpd.Parameters.Add(oParamId);
+
+                    int RowsModified2 = oUpd.ExecuteNonQuery();
+
+                   /// if (RowsModified2 == 0 )
+                   // {
                         //tout erreur logique il faut aussi faire le commit
                         oTrans.Commit();
-                        throw new BusinessError.CustomError(9);
-                    }
+                       ////// throw new BusinessError.CustomError(9);
+                 //   }
+                  //  if (RowsModified1 == 0)
+                  //  {
+                   ////     oTrans.Commit();
+                       //// throw new BusinessError.CustomError(9);
+
+                 //   }
 
 
                 }
