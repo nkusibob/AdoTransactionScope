@@ -76,6 +76,52 @@ namespace WinMDI
             loidDatasetStudents();
         }
 
-        
+        private void btnNomSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (txtBoxNomSearch.Text.Length < 3)
+                    throw new BusinessError.CustomError(4);
+
+
+                DataSet
+                    oData = new DataSet();
+
+                BusinessLayer.Etudiants.LoadAllMatricule(ref oData);
+                string search = "ETU_MATRICULE like '%" + txtBoxNomSearch.Text + "%'";
+                var dt = oData.Tables[0].DefaultView;
+                var dt2 = oData.Tables[0].DefaultView;
+                var dt3 = oData.Tables[0].DefaultView;
+                dt.RowFilter = search;
+
+
+                if (dt.Count == 0)
+                {
+
+                    dt2 = oData.Tables[0].DefaultView;
+                    search = "ETU_NOM like '%" + txtBoxNomSearch.Text + "%'";
+                    dt2 = oData.Tables[0].DefaultView;
+                    dt2.RowFilter = search;
+
+                }
+                if (dt2.Count == 0)
+                {
+
+                    search = "ETU_PRENOM like '%" + txtBoxNomSearch.Text + "%'";
+                    dt3 = oData.Tables[0].DefaultView;
+                    dt3.RowFilter = search;
+
+                }
+
+
+
+                GridStudentMDI.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

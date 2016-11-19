@@ -371,14 +371,13 @@ namespace DataAccessLayer
 
         }
 
-        public static void SaveAllMDI(List<Etudiant> listEtu, List<studentTest> ListToInsert)
+        public static void SaveAllMDI(List<studentTest> listEtu, List<studentTest> ListToInsert)
         {
 
             {
                 SqlCommand oUpd
                    = null;
-                SqlCommand oDel
-                  = null;
+               
 
                 SqlCommand oIns
                   = null;
@@ -399,13 +398,16 @@ namespace DataAccessLayer
                         oUpd.Transaction = oTrans;
                         oUpd.CommandType = CommandType.StoredProcedure;
                         oUpd.CommandText = "UpdateByID";
-                        SqlParameter oParamMatricule = new SqlParameter("@Matricule", etu.Matricule);
-                        SqlParameter oParamID = new SqlParameter("@ID", etu.ID);
-
-
+                        SqlParameter oParamMatricule = new SqlParameter("@matricule", etu.Matricule);
+                        SqlParameter oParamNom = new SqlParameter("nom", etu.nom);
+                        SqlParameter oParamPrenom = new SqlParameter("prenom", etu.prenom);
+                        SqlParameter oParamID = new SqlParameter("@id", etu.ID);
+                        SqlParameter oParamCours = new SqlParameter("@cours", etu.cours);
                         oUpd.Parameters.Add(oParamMatricule);
                         oUpd.Parameters.Add(oParamID);
-
+                        oUpd.Parameters.Add(oParamNom);
+                        oUpd.Parameters.Add(oParamPrenom);
+                        oUpd.Parameters.Add(oParamCours);
                         int RowsModified = oUpd.ExecuteNonQuery();
 
                         if (RowsModified == 0)

@@ -54,6 +54,7 @@
             this.btnNomSearch.TabIndex = 1;
             this.btnNomSearch.Text = "search";
             this.btnNomSearch.UseVisualStyleBackColor = true;
+            this.btnNomSearch.Click += new System.EventHandler(this.btnNomSearch_Click);
             // 
             // GridStudentMDI
             // 
@@ -74,14 +75,14 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.addToolStripMenuItem.Text = "add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.updateToolStripMenuItem.Text = "update";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
@@ -96,7 +97,6 @@
             this.Controls.Add(this.txtBoxNomSearch);
             this.Name = "StudentGrid";
             this.Text = "StudentGrid";
-           
             ((System.ComponentModel.ISupportInitialize)(this.GridStudentMDI)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

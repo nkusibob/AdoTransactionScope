@@ -156,45 +156,34 @@ namespace BusinessLayer
             }
         public static void SaveAllTransMDI(DataView poViewData)
         {
-            //default isolation level for transaction scope is already seriazable
-            //if yu delete a row and try to update it within another form
-            //it throws a business error explaining the row has been already deleted it doesn't exist anymore
-            //i gave the choice in DATALAYER in DataBase.CS to configure isolation level
-
+           
 
             try
             {
-                ////On récupère les rows deleted
-
-                //poViewData.RowStateFilter = DataViewRowState.Deleted;
-                //List<int> ToDel = new List<int>();
-                //foreach (DataRowView oRow in poViewData)
-                //{
-                //    Console.WriteLine(oRow["ETU_ID"].ToString());
-                //    int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
-                //    string MATRICULE = oRow["ETU_MATRICULE"].ToString();
-                //    ToDel.Add(ID);
-                //    //DataAccessLayer.Etudiants.DeleteFromID(ID);
-
-                //}
+               
 
                 poViewData.RowStateFilter = DataViewRowState.ModifiedCurrent;
 
-                //Data.Etudiant odataEtu = new Data.Etudiant();
-                List<BusinessEntity.Etudiant> listEtu = new List<BusinessEntity.Etudiant>();
+                
+                List<BusinessEntity.studentTest> listEtu = new List<BusinessEntity.studentTest>();
                 foreach (DataRowView oRow in poViewData)
 
                 {
                     MessageBox.Show(oRow["ETU_ID"].ToString());
                     int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
                     string Matricule = oRow["ETU_MATRICULE"].ToString();
-
-
+                    string cours = oRow["cours"].ToString();
+                    string nom = oRow["ETU_nom"].ToString();
+                    string prenom = oRow["ETU_prenom"].ToString();
+                   
                     if (Matricule.Length < 5)
                         throw new BusinessError.CustomError(3);
-                    BusinessEntity.Etudiant oEtu = new BusinessEntity.Etudiant();
+                    BusinessEntity.studentTest oEtu = new BusinessEntity.studentTest();
                     oEtu.Matricule = Matricule;
                     oEtu.ID = ID;
+                    oEtu.cours = cours;
+                    oEtu.nom = nom;
+                    oEtu.prenom = prenom;
                     listEtu.Add(oEtu);
 
 
