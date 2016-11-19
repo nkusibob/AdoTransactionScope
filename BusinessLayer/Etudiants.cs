@@ -19,6 +19,7 @@ namespace BusinessLayer
             //if yu delete a row and try to update it within another form
             //it throws a business error explaining the row has been already deleted it doesn't exist anymore
             //i gave the choice in DATALAYER in DataBase.CS to configure isolation level
+            //première methode sans transaction au niveau de la dal mais une encapsulation avec transasctionscope au niveau de BAL
             using (TransactionScope ts = DataAccessLayer.clsDatabase.CreateReadUncommitted())
             {
 
