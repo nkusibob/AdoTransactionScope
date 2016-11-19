@@ -16,3 +16,5 @@ C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\bin\D
 C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\bin\Debug\DataAccessLayer.pdb
 C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.exe
 C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.pdb
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.StudentGrid.resources
+C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\WinMDI\obj\Debug\WinMDI.ModalAdd.resources

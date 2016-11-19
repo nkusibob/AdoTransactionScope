@@ -35,5 +35,12 @@ namespace WinMDI
         {
 
         }
+
+        private void etudiantsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StudentGrid oForm = new StudentGrid();
+            oForm.MdiParent = this;
+            oForm.Show();
+        }
     }
 }

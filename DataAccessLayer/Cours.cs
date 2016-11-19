@@ -370,6 +370,7 @@ namespace DataAccessLayer
                 //uodate
 
                 int RowsModified1 = 0;
+                int RowsModified2 = 0;
                 foreach (var cours in ListToUpdate)
                 {
                     oUpd = new SqlCommand();
@@ -397,6 +398,28 @@ namespace DataAccessLayer
                     oUpd.Connection = clsDatabase.oDataBase;
                     oUpd.Transaction = oTrans;
                     oUpd.CommandType = CommandType.StoredProcedure;
+                    oUpd.CommandText = "UpdateCoursByID";
+                    SqlParameter oParamId = new SqlParameter("@idCours", cours.IdCours);
+                    SqlParameter oParamCode = new SqlParameter("@code", cours.code);
+                    SqlParameter oParamLibellé = new SqlParameter("@libellé", cours.libellé);
+
+
+
+                    oUpd.Parameters.Add(oParamCode);
+                    oUpd.Parameters.Add(oParamLibellé);
+                    oUpd.Parameters.Add(oParamId);
+                    RowsModified2 = oUpd.ExecuteNonQuery();
+
+
+
+
+                }
+                foreach (var cours in ListToUpdate)
+                {
+                    oUpd = new SqlCommand();
+                    oUpd.Connection = clsDatabase.oDataBase;
+                    oUpd.Transaction = oTrans;
+                    oUpd.CommandType = CommandType.StoredProcedure;
                     oUpd.CommandText = "UpdateByLibellé";
                     SqlParameter oParamLibellé = new SqlParameter("@Libellé", cours.libellé);
                     SqlParameter oParamCode = new SqlParameter("@code", cours.code);
@@ -408,7 +431,7 @@ namespace DataAccessLayer
                     oUpd.Parameters.Add(oParamLibellé);
                     oUpd.Parameters.Add(oParamId);
 
-                    int RowsModified2 = oUpd.ExecuteNonQuery();
+                    RowsModified2 = oUpd.ExecuteNonQuery();
 
                    /// if (RowsModified2 == 0 )
                    // {

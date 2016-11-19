@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using BusinessEntity;
 
 namespace DataAccessLayer
 {
@@ -92,12 +93,14 @@ namespace DataAccessLayer
                     SqlParameter oParamMatricule = new SqlParameter("@matricule", etu.Matricule);
                     SqlParameter oParamNom = new SqlParameter("@nom", etu.DisplayName);
                     SqlParameter oParamPrenom = new SqlParameter("@prenom", etu.DisplayName);
+                    SqlParameter oParamCours = new SqlParameter("@cours", etu.cours);
 
 
 
                     oIns.Parameters.Add(oParamMatricule);
                     oIns.Parameters.Add(oParamNom);
                     oIns.Parameters.Add(oParamPrenom);
+                    oIns.Parameters.Add(oParamCours);
 
                     int RowsModified =  oIns.ExecuteNonQuery();
 
@@ -367,6 +370,117 @@ namespace DataAccessLayer
             }
 
         }
+
+        public static void SaveAllMDI(List<Etudiant> listEtu, List<studentTest> ListToInsert)
+        {
+
+            {
+                SqlCommand oUpd
+                   = null;
+                SqlCommand oDel
+                  = null;
+
+                SqlCommand oIns
+                  = null;
+                SqlTransaction oTrans = null;
+
+                try
+                {
+                    //delete
+
+                    //uodate
+                    clsDatabase.oDataBase.Open();
+
+                  
+                    foreach (var etu in listEtu)
+                    {
+                        oUpd = new SqlCommand();
+                        oUpd.Connection = clsDatabase.oDataBase;
+                        oUpd.Transaction = oTrans;
+                        oUpd.CommandType = CommandType.StoredProcedure;
+                        oUpd.CommandText = "UpdateByID";
+                        SqlParameter oParamMatricule = new SqlParameter("@Matricule", etu.Matricule);
+                        SqlParameter oParamID = new SqlParameter("@ID", etu.ID);
+
+
+                        oUpd.Parameters.Add(oParamMatricule);
+                        oUpd.Parameters.Add(oParamID);
+
+                        int RowsModified = oUpd.ExecuteNonQuery();
+
+                        if (RowsModified == 0)
+                        {
+                            //tout erreur logique il faut aussi faire le commit
+                            oTrans.Commit();
+                            throw new BusinessError.CustomError(5);
+                        }
+
+
+                    }
+                    oIns = new SqlCommand();
+                    oIns.Connection = clsDatabase.oDataBase;
+                    //insert
+                    foreach (var etu in ListToInsert)
+                    {
+                        
+                        oIns.Transaction = oTrans;
+                        oIns.CommandType = CommandType.StoredProcedure;
+                        oIns.CommandText = "Etu_Create";
+                        SqlParameter oParamMatricule = new SqlParameter("@matricule", etu.Matricule);
+                        SqlParameter oParamNom = new SqlParameter("@nom", etu.nom);
+                        SqlParameter oParamPrenom = new SqlParameter("@prenom", etu.prenom);
+                        SqlParameter oParamCours = new SqlParameter("@cours", etu.cours);
+
+
+
+                        oIns.Parameters.Add(oParamMatricule);
+                        oIns.Parameters.Add(oParamNom);
+                        oIns.Parameters.Add(oParamPrenom);
+                        oIns.Parameters.Add(oParamCours);
+
+                        int RowsModified = oIns.ExecuteNonQuery();
+
+                        if (RowsModified == 0)
+                        {
+                            //tout erreur logique il faut aussi faire le commit
+                            oTrans.Commit();
+                            throw new BusinessError.CustomError(5);
+                        }
+
+                    }
+                   // oTrans.Commit();
+
+                }
+
+                catch (SqlException exSQL)
+                {
+                    //roll back avant n'importe quel traitement 
+                    //après on renvoie l'erreur business,...
+                    oTrans.Rollback();
+                    int IdError = 999;
+                    switch (exSQL.Number)
+                    {
+                        case 18456:
+                            IdError = 1;
+                            break;
+                        case 8152:
+                            IdError = 5;
+                            break;
+                    }
+
+                    throw new BusinessError.CustomError(IdError);
+
+                }
+
+                finally
+                {
+                    clsDatabase.oDataBase.Close();
+
+                }
+
+            }
+        }
+
         public static DataSet SelectByMatricule(string matr)
         {
             SqlCommand oUpd
@@ -541,7 +655,7 @@ namespace DataAccessLayer
             }
 
         }
-        public static void InsertETU(string pMAtricule, string nom,string prenom)
+        public static void InsertETU(string pMAtricule, string nom,string prenom,string cours)
         {
             SqlCommand oUpd
                 = new SqlCommand();
@@ -559,12 +673,13 @@ namespace DataAccessLayer
                 SqlParameter oParamMatricule = new SqlParameter("@matricule", pMAtricule);
                 SqlParameter oParamNom = new SqlParameter("@nom", nom);
                 SqlParameter oParamPrenom = new SqlParameter("@prenom", prenom);
-               
+                SqlParameter oParamCours = new SqlParameter("@cours", cours);
 
 
                 oUpd.Parameters.Add(oParamMatricule);
                 oUpd.Parameters.Add(oParamNom);
                 oUpd.Parameters.Add(oParamPrenom);
+                oUpd.Parameters.Add(oParamCours);
 
 
                 int RowsInserted = oUpd.ExecuteNonQuery();
