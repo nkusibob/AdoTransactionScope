@@ -65,10 +65,12 @@ namespace DataAccessLayer
                     oUpd.CommandText = "UpdateByID";
                     SqlParameter oParamMatricule = new SqlParameter("@Matricule", etu.Matricule);
                     SqlParameter oParamID = new SqlParameter("@ID", etu.ID);
+                    SqlParameter oParamDateTime = new SqlParameter("@last_modified", etu.last_modified);
 
 
                     oUpd.Parameters.Add(oParamMatricule);
                     oUpd.Parameters.Add(oParamID);
+                    oUpd.Parameters.Add(oParamDateTime);
 
                     int RowsModified = oUpd.ExecuteNonQuery();
 
@@ -195,57 +197,57 @@ namespace DataAccessLayer
 
 
         }
-        public static void LoadAllMatricule( DataSet poData)
-        {
-            SqlCommand oSelect
-                = new SqlCommand();
+        //public static void LoadAllMatricule( DataSet poData)
+        //{
+        //    SqlCommand oSelect
+        //        = new SqlCommand();
 
-            SqlDataAdapter oDataAdapter = new SqlDataAdapter();
+        //    SqlDataAdapter oDataAdapter = new SqlDataAdapter();
 
-            try
-            {
-                clsDatabase.oDataBase.Open();
+        //    try
+        //    {
+        //        clsDatabase.oDataBase.Open();
 
-                oSelect.Connection = clsDatabase.oDataBase;
+        //        oSelect.Connection = clsDatabase.oDataBase;
 
-                oSelect.CommandType = CommandType.StoredProcedure;
-                oSelect.CommandText = "Etu_SelectAllMatricule";
+        //        oSelect.CommandType = CommandType.StoredProcedure;
+        //        oSelect.CommandText = "Etu_SelectAllMatricule";
 
-                oDataAdapter.SelectCommand = oSelect;
+        //        oDataAdapter.SelectCommand = oSelect;
 
-                oDataAdapter.Fill(poData, "MesMatricule");
+        //        oDataAdapter.Fill(poData, "MesMatricule");
                 
-            }
-            catch (SqlException exSQL)
-            {
-                int IdError = 999;
-                switch (exSQL.Number)
-                {
-                    case 18456:
-                        IdError = 1;
-                        break;
-                }
+        //    }
+        //    catch (SqlException exSQL)
+        //    {
+        //        int IdError = 999;
+        //        switch (exSQL.Number)
+        //        {
+        //            case 18456:
+        //                IdError = 1;
+        //                break;
+        //        }
 
-                throw new BusinessError.CustomError(IdError);
+        //        throw new BusinessError.CustomError(IdError);
 
-            }
-            catch (Exception ex)
-            {
-                int IdError = 999;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        int IdError = 999;
 
-                throw new BusinessError.CustomError(IdError);
-
-
-            }
-            finally
-            {
-                clsDatabase.oDataBase.Close(); 
-            }
+        //        throw new BusinessError.CustomError(IdError);
 
 
+        //    }
+        //    finally
+        //    {
+        //        clsDatabase.oDataBase.Close(); 
+        //    }
 
 
-        }
+
+
+        //}
 
         public static void DeleteFromID(int id)
         {
@@ -542,7 +544,7 @@ namespace DataAccessLayer
 
             }
         }
-        public static void UpdateMatricule(string pMAtricule, int pID)
+        public static void UpdateMatricule(string pMAtricule, int pID,DateTime dt,string cours,string nom,string prenom)
         {
             SqlCommand oUpd
                 = new SqlCommand();
@@ -559,15 +561,21 @@ namespace DataAccessLayer
 
                 SqlParameter oParamMatricule = new SqlParameter("@Matricule", pMAtricule);
                 SqlParameter oParamID = new SqlParameter("@ID", pID);
-
-
+                SqlParameter oParamcours = new SqlParameter("@cours", cours);
+                SqlParameter oParamDate = new SqlParameter("@last_modified", dt);
+                SqlParameter oParamNom = new SqlParameter("@nom", nom);
+                SqlParameter oParamPrenom = new SqlParameter("@prenom", prenom);
                 oUpd.Parameters.Add(oParamMatricule);
                 oUpd.Parameters.Add(oParamID);
-
+                oUpd.Parameters.Add(oParamcours);
+                oUpd.Parameters.Add(oParamDate);
+                oUpd.Parameters.Add(oParamNom);
+                oUpd.Parameters.Add(oParamPrenom);
                 int RowsModified = oUpd.ExecuteNonQuery();
-
+                //comment savoir la raison de la rowModified=0
                 if (RowsModified == 0)
-                    throw new BusinessError.CustomError(5);
+                    
+                   throw new BusinessError.CustomError(11);
 
             }
             catch (SqlException exSQL)

@@ -129,5 +129,12 @@ namespace AppliPrincipale
             BusinessLayer.Etudiants.SaveAllTrans(oView);
 
         }
+
+        private void btnSaveTimeStamp_Click(object sender, EventArgs e)
+        {
+            DataView oView = (DataView)gridData.DataSource;
+
+            BusinessLayer.Etudiants.SaveAllTImeStamp(oView);
+        }
     }
 }

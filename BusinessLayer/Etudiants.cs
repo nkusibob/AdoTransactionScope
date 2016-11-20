@@ -46,11 +46,15 @@ namespace BusinessLayer
                         MessageBox.Show(oRow["ETU_ID"].ToString());
                         int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
                         string Matricule = oRow["ETU_MATRICULE"].ToString();
+                        string nom = oRow["ETU_nom"].ToString();
+                        string prenom = oRow["ETU_prenom"].ToString();
+                        string cours = oRow["cours"].ToString();
+                        DateTime timeStamp = Convert.ToDateTime(oRow["last_modified"]);
 
                         if (Matricule.Length < 5)
                             throw new BusinessError.CustomError(3);
 
-                        DataAccessLayer.Etudiants.UpdateMatricule(Matricule, ID);
+                        DataAccessLayer.Etudiants.UpdateMatricule(Matricule, ID,timeStamp,cours,nom,prenom);
                     }
 
                     poViewData.RowStateFilter = DataViewRowState.Added;
@@ -155,6 +159,45 @@ namespace BusinessLayer
 
 
             }
+
+        public static void SaveAllTImeStamp(DataView poViewData)
+        {
+            try
+            {
+                poViewData.RowStateFilter = DataViewRowState.ModifiedCurrent;
+
+                //Data.Etudiant odataEtu = new Data.Etudiant();
+                List<BusinessEntity.Etudiant> listEtu = new List<BusinessEntity.Etudiant>();
+                foreach (DataRowView oRow in poViewData)
+
+                {
+                    MessageBox.Show(oRow["ETU_ID"].ToString());
+                    int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
+                    string Matricule = oRow["ETU_MATRICULE"].ToString();
+                    string nom = oRow["ETU_nom"].ToString();
+                    string prenom = oRow["ETU_prenom"].ToString();
+                    string cours = oRow["cours"].ToString();
+                    DateTime timeStamp = Convert.ToDateTime(oRow["ETU_LASTMODIFIED"]);
+
+                    if (Matricule.Length < 5)
+                        throw new BusinessError.CustomError(3);
+                    //BusinessEntity.Etudiant oEtu = new BusinessEntity.Etudiant();
+                    //oEtu.Matricule = Matricule;
+                    //oEtu.ID = ID;
+                    //oEtu.last_modified = timeStamp;
+                    //listEtu.Add(oEtu);
+                    DataAccessLayer.Etudiants.UpdateMatricule(Matricule, ID, timeStamp,cours,nom,prenom);
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public static void SaveAllTransMDI(DataView poViewData)
         {
            
@@ -325,7 +368,7 @@ namespace BusinessLayer
                 oEtudiant.ID = Convert.ToInt32(oRow["ETU_ID"]);
                 oEtudiant.Matricule = oRow["ETU_MATRICULE"].ToString();
                 oEtudiant.cours = oRow["cours"].ToString();
-
+                oEtudiant.last_modified = Convert.ToDateTime(oRow["ETU_LASTMODIFIED"]);
 
                 if (oEtudiant.Matricule.Length < 5)
                     throw new BusinessError.CustomError(3);

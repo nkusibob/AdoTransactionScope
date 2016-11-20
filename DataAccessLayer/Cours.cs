@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using BusinessEntity;
 
 namespace DataAccessLayer
 {
@@ -329,6 +330,51 @@ namespace DataAccessLayer
             }
 
         }
+
+        public static void SaveAllTimeStamp(List<string> toDel, List<BusinessEntity.Cours> ListToUpdate, List<BusinessEntity.Cours> listToAdd)
+        {
+            //uodate
+            SqlCommand oUpd
+              = null;
+        
+            SqlTransaction oTrans = null;
+            try
+            {
+                clsDatabase.oDataBase.Open();
+                oTrans = clsDatabase.oDataBase.BeginTransaction();
+
+                foreach (var cours in ListToUpdate)
+                {
+                    oUpd = new SqlCommand();
+                    oUpd.Connection = clsDatabase.oDataBase;
+                    oUpd.Transaction = oTrans;
+                    oUpd.CommandType = CommandType.StoredProcedure;
+                    oUpd.CommandText = "UpdateCoursByID";
+                    SqlParameter oParamCode = new SqlParameter("@code", cours.code);
+                    SqlParameter oParamLibellé = new SqlParameter("@libellé", cours.libellé);
+                    SqlParameter oParamID = new SqlParameter("@IdCours", cours.IdCours);
+                    SqlParameter oParamLastModified = new SqlParameter("@last_modified", cours.last_modified);
+
+
+                    oUpd.Parameters.Add(oParamCode);
+                    oUpd.Parameters.Add(oParamLibellé);
+                    oUpd.Parameters.Add(oParamLastModified);
+                    oUpd.Parameters.Add(oParamID);
+                    int RowsModified = oUpd.ExecuteNonQuery();
+                    if (RowsModified == 0)
+                        throw new BusinessError.CustomError(12);
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
         public static void SaveAll(List<string> lstToDelete, List<BusinessEntity.Cours> ListToUpdate, List<BusinessEntity.Cours> ListToInsert)
         {
             SqlCommand oUpd
@@ -363,7 +409,7 @@ namespace DataAccessLayer
                     int RowsDeleted = oDel.ExecuteNonQuery();
 
                     if (RowsDeleted == 0)
-                        throw new BusinessError.CustomError(5);
+                      throw new BusinessError.CustomError(5);
 
 
                 }

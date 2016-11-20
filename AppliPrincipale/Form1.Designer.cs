@@ -41,6 +41,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnSaveTimeStamp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -164,11 +165,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnSaveTimeStamp
+            // 
+            this.btnSaveTimeStamp.Location = new System.Drawing.Point(27, 441);
+            this.btnSaveTimeStamp.Name = "btnSaveTimeStamp";
+            this.btnSaveTimeStamp.Size = new System.Drawing.Size(128, 68);
+            this.btnSaveTimeStamp.TabIndex = 11;
+            this.btnSaveTimeStamp.Text = "SaveTimeStamp";
+            this.btnSaveTimeStamp.UseVisualStyleBackColor = true;
+            this.btnSaveTimeStamp.Click += new System.EventHandler(this.btnSaveTimeStamp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 521);
+            this.Controls.Add(this.btnSaveTimeStamp);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btSaveAll);
             this.Controls.Add(this.btSearch);
@@ -206,6 +218,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSaveTimeStamp;
     }
 }
 

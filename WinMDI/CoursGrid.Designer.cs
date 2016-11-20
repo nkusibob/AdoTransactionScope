@@ -32,6 +32,7 @@
             this.SaveCours = new System.Windows.Forms.Button();
             this.SearchCours = new System.Windows.Forms.TextBox();
             this.btn_searchCours = new System.Windows.Forms.Button();
+            this.btnTimeStamp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CoursGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,11 +71,22 @@
             this.btn_searchCours.UseVisualStyleBackColor = true;
             this.btn_searchCours.Click += new System.EventHandler(this.btn_searchCours_Click);
             // 
+            // btnTimeStamp
+            // 
+            this.btnTimeStamp.Location = new System.Drawing.Point(13, 263);
+            this.btnTimeStamp.Name = "btnTimeStamp";
+            this.btnTimeStamp.Size = new System.Drawing.Size(110, 49);
+            this.btnTimeStamp.TabIndex = 4;
+            this.btnTimeStamp.Text = "SaveTimeStamp";
+            this.btnTimeStamp.UseVisualStyleBackColor = true;
+            this.btnTimeStamp.Click += new System.EventHandler(this.btnTimeStamp_Click);
+            // 
             // CoursWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(496, 341);
+            this.Controls.Add(this.btnTimeStamp);
             this.Controls.Add(this.btn_searchCours);
             this.Controls.Add(this.SearchCours);
             this.Controls.Add(this.SaveCours);
@@ -93,5 +105,6 @@
         private System.Windows.Forms.Button SaveCours;
         private System.Windows.Forms.TextBox SearchCours;
         private System.Windows.Forms.Button btn_searchCours;
+        private System.Windows.Forms.Button btnTimeStamp;
     }
 }

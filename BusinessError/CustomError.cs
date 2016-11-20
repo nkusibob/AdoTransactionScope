@@ -57,6 +57,9 @@ namespace BusinessError
                 case 10:
                     MyMessage = "un cours avec cet id existe déjà";
                     break;
+                case 11:
+                    MyMessage = "cette ligne a déjà été modifié ,rechargez pour avoir les données actuelles";
+                    break;
                 default:
                     MyMessage = "Erreur non connue...";
                     _ID = 999;
