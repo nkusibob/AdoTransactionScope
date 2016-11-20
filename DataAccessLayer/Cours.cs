@@ -47,14 +47,7 @@ namespace DataAccessLayer
                 throw new BusinessError.CustomError(IdError);
 
             }
-            catch (Exception ex)
-            {
-                int IdError = 999;
-
-                throw new BusinessError.CustomError(IdError);
-
-
-            }
+         
             finally
             {
                 clsDatabase.oDataBase.Close();
@@ -495,7 +488,7 @@ namespace DataAccessLayer
                     oUpd.Parameters.Add(oParamDt);
                     int RowsModified = oUpd.ExecuteNonQuery();
                     if(RowsModified == 0){
-                        throw new Exception();
+                        throw new BusinessError.CustomError(12);
                     }
 
 

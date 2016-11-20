@@ -219,7 +219,7 @@ namespace BusinessLayer
                     string cours = oRow["cours"].ToString();
                     string nom = oRow["ETU_nom"].ToString();
                     string prenom = oRow["ETU_prenom"].ToString();
-                   
+                    DateTime dt =Convert.ToDateTime (oRow["ETU_LASTMODIFIED"]);
                     if (Matricule.Length < 5)
                         throw new BusinessError.CustomError(3);
                     BusinessEntity.studentTest oEtu = new BusinessEntity.studentTest();
@@ -228,6 +228,7 @@ namespace BusinessLayer
                     oEtu.cours = cours;
                     oEtu.nom = nom;
                     oEtu.prenom = prenom;
+                    oEtu.last_modified = dt;
                     listEtu.Add(oEtu);
 
 

@@ -405,11 +405,13 @@ namespace DataAccessLayer
                         SqlParameter oParamPrenom = new SqlParameter("prenom", etu.prenom);
                         SqlParameter oParamID = new SqlParameter("@id", etu.ID);
                         SqlParameter oParamCours = new SqlParameter("@cours", etu.cours);
+                        SqlParameter oParamDt = new SqlParameter("@last_modified", etu.last_modified);
                         oUpd.Parameters.Add(oParamMatricule);
                         oUpd.Parameters.Add(oParamID);
                         oUpd.Parameters.Add(oParamNom);
                         oUpd.Parameters.Add(oParamPrenom);
                         oUpd.Parameters.Add(oParamCours);
+                        oUpd.Parameters.Add(oParamDt);
                         int RowsModified = oUpd.ExecuteNonQuery();
 
                         if (RowsModified == 0)

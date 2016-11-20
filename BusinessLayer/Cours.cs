@@ -119,7 +119,7 @@ namespace BusinessLayer
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
 
-                    DateTime dt =Convert.ToDateTime (oRow["last_modidfied"].ToString());
+                    DateTime dt =Convert.ToDateTime (oRow["last_modidfied"]);
                     //if (Matricule.Length < 5)
                     //    throw new BusinessError.CustomError(3);
                     BusinessEntity.Cours oCours = new BusinessEntity.Cours();
@@ -140,7 +140,7 @@ namespace BusinessLayer
                     string idCours = oRow["idCours"].ToString();
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
-                    DateTime dt = Convert.ToDateTime(oRow["last_modified"].ToString());
+                    DateTime dt = Convert.ToDateTime(oRow["last_modified"]);
                     //if (matricule.Length < 5)
                     //    throw new BusinessError.CustomError(3);
                     BusinessEntity.Cours oCours = new BusinessEntity.Cours();
@@ -193,7 +193,7 @@ namespace BusinessLayer
                     string idCours = oRow["idCours"].ToString();
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
-                    DateTime dt = Convert.ToDateTime(oRow["last_modidfied"].ToString());
+                    DateTime dt = Convert.ToDateTime(oRow["last_modidfied"]);
 
                     //if (Matricule.Length < 5)
                     //    throw new BusinessError.CustomError(3);
