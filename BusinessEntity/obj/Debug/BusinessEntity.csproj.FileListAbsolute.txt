@@ -5,6 +5,5 @@ C:\cours\AppliAvecCouches\BusinessEntity\obj\Debug\BusinessEntity.dll
 C:\cours\AppliAvecCouches\BusinessEntity\obj\Debug\BusinessEntity.pdb
 C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessEntity\bin\Debug\BusinessEntity.dll
 C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessEntity\bin\Debug\BusinessEntity.pdb
-C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessEntity\obj\Debug\BusinessEntity.csprojResolveAssemblyReference.cache
 C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessEntity\obj\Debug\BusinessEntity.dll
 C:\Users\isa\Documents\Visual Studio 2015\Projects\AppliAvecCouches\BusinessEntity\obj\Debug\BusinessEntity.pdb

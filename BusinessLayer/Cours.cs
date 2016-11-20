@@ -175,7 +175,7 @@ namespace BusinessLayer
                     Console.WriteLine(oRow["code"].ToString());
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
-                    DateTime dt = Convert.ToDateTime(oRow["last_modified"].ToString());
+                    DateTime dt = Convert.ToDateTime(oRow["last_modidfied"].ToString());
                     ToDel.Add(code);
                     //DataAccessLayer.Etudiants.DeleteFromID(ID);
 
@@ -191,7 +191,7 @@ namespace BusinessLayer
                     string idCours = oRow["idCours"].ToString();
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
-                    DateTime dt = Convert.ToDateTime(oRow["last_modified"].ToString());
+                    DateTime dt = Convert.ToDateTime(oRow["last_modidfied"].ToString());
 
                     //if (Matricule.Length < 5)
                     //    throw new BusinessError.CustomError(3);

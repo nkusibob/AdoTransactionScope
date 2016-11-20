@@ -362,16 +362,53 @@ namespace DataAccessLayer
                     oUpd.Parameters.Add(oParamID);
                     int RowsModified = oUpd.ExecuteNonQuery();
                     if (RowsModified == 0)
-                        throw new BusinessError.CustomError(12);
+                    {
+                        oTrans.Commit();
+
+                      
+
+                    }
 
 
                 }
+                oTrans.Commit();
+
+            }
+            catch (SqlException exSQL)
+            {
+                //roll back avant n'importe quel traitement 
+                //après on renvoie l'erreur business,...
+                oTrans.Rollback();
+                int IdError = 999;
+                switch (exSQL.Number)
+                {
+                    case 18456:
+                        IdError = 1;
+                        break;
+                    case 8152:
+                        IdError = 5;
+                        break;
+                    case 547:
+                        IdError = 8;
+                        break;
+                    case 2627:
+                        IdError = 10;
+                        break;
+                }
+
+                throw new BusinessError.CustomError(IdError);
+
             }
             catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                clsDatabase.oDataBase.Close();
+
+            }
+
 
         }
 
