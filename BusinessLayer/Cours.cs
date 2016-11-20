@@ -119,80 +119,7 @@ namespace BusinessLayer
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
 
-
-                    //if (Matricule.Length < 5)
-                    //    throw new BusinessError.CustomError(3);
-                    BusinessEntity.Cours oCours = new BusinessEntity.Cours();
-                    oCours.IdCours = idCours;
-                    oCours.code = code;
-                    oCours.libellé = libellé;
-                    listCours.Add(oCours);
-
-
-                }
-
-
-                poViewData.RowStateFilter = DataViewRowState.Added;
-                List<BusinessEntity.Cours> listToAdd = new List<BusinessEntity.Cours>();
-                foreach (DataRowView oRow in poViewData)
-                {
-                    string idCours = oRow["idCours"].ToString();
-                    string libellé = (oRow["libellé"].ToString());
-                    string code = oRow["code"].ToString();
-
-                    //if (matricule.Length < 5)
-                    //    throw new BusinessError.CustomError(3);
-                    BusinessEntity.Cours oCours = new BusinessEntity.Cours();
-                    oCours.IdCours = idCours;
-                    oCours.code = code;
-                    oCours.libellé = libellé;
-                    //oEtu.DisplayName = nom + prenom;
-                    listToAdd.Add(oCours);
-                    // DataAccessLayer.Etudiants.InsertETU(matricule, nom, prenom);
-
-                }
-
-                DataAccessLayer.Cours.SaveAll(ToDel, listCours, listToAdd);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-
-        }
-
-        public static void SaveAllTransTimeStamp(DataView poViewData)
-        {
-            try
-            {
-                //On récupère les rows deleted
-
-                poViewData.RowStateFilter = DataViewRowState.Deleted;
-                List<string> ToDel = new List<string>();
-                foreach (DataRowView oRow in poViewData)
-                {
-                    Console.WriteLine(oRow["code"].ToString());
-                    string libellé = (oRow["libellé"].ToString());
-                    string code = oRow["code"].ToString();
-                    DateTime dt = Convert.ToDateTime(oRow["last_modidfied"].ToString());
-                    ToDel.Add(code);
-                    //DataAccessLayer.Etudiants.DeleteFromID(ID);
-
-                }
-
-                poViewData.RowStateFilter = DataViewRowState.ModifiedCurrent;
-
-                //Data.Etudiant odataEtu = new Data.Etudiant();
-                List<BusinessEntity.Cours> listCours = new List<BusinessEntity.Cours>();
-                foreach (DataRowView oRow in poViewData)
-
-                {
-                    string idCours = oRow["idCours"].ToString();
-                    string libellé = (oRow["libellé"].ToString());
-                    string code = oRow["code"].ToString();
-                    DateTime dt = Convert.ToDateTime(oRow["last_modidfied"].ToString());
-
+                    DateTime dt =Convert.ToDateTime (oRow["last_modidfied"].ToString());
                     //if (Matricule.Length < 5)
                     //    throw new BusinessError.CustomError(3);
                     BusinessEntity.Cours oCours = new BusinessEntity.Cours();
@@ -227,7 +154,82 @@ namespace BusinessLayer
 
                 }
 
-                DataAccessLayer.Cours.SaveAllTimeStamp(ToDel, listCours, listToAdd);
+                DataAccessLayer.Cours.SaveAll(ToDel, listCours, listToAdd);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+
+        }
+
+        public static void SaveAllTransTimeStamp(DataView poViewData)
+        {
+            try
+            {
+                //On récupère les rows deleted
+
+                //poViewData.RowStateFilter = DataViewRowState.Deleted;
+                //List<string> ToDel = new List<string>();
+                //foreach (DataRowView oRow in poViewData)
+                //{
+                //    Console.WriteLine(oRow["code"].ToString());
+                //    string libellé = (oRow["libellé"].ToString());
+                //    string code = oRow["code"].ToString();
+                //    DateTime dt = Convert.ToDateTime(oRow["last_modidfied"].ToString());
+                //    ToDel.Add(code);
+                //    //DataAccessLayer.Etudiants.DeleteFromID(ID);
+
+                //}
+
+                poViewData.RowStateFilter = DataViewRowState.ModifiedCurrent;
+
+                //Data.Etudiant odataEtu = new Data.Etudiant();
+                List<BusinessEntity.Cours> listCours = new List<BusinessEntity.Cours>();
+                foreach (DataRowView oRow in poViewData)
+
+                {
+                    string idCours = oRow["idCours"].ToString();
+                    string libellé = (oRow["libellé"].ToString());
+                    string code = oRow["code"].ToString();
+                    DateTime dt = Convert.ToDateTime(oRow["last_modidfied"].ToString());
+
+                    //if (Matricule.Length < 5)
+                    //    throw new BusinessError.CustomError(3);
+                    BusinessEntity.Cours oCours = new BusinessEntity.Cours();
+                    oCours.IdCours = idCours;
+                    oCours.code = code;
+                    oCours.libellé = libellé;
+                    oCours.last_modified = dt;
+                    listCours.Add(oCours);
+
+
+                }
+
+
+                //poViewData.RowStateFilter = DataViewRowState.Added;
+                //List<BusinessEntity.Cours> listToAdd = new List<BusinessEntity.Cours>();
+                //foreach (DataRowView oRow in poViewData)
+                //{
+                //    string idCours = oRow["idCours"].ToString();
+                //    string libellé = (oRow["libellé"].ToString());
+                //    string code = oRow["code"].ToString();
+                //    DateTime dt = Convert.ToDateTime(oRow["last_modified"].ToString());
+                //    //if (matricule.Length < 5)
+                //    //    throw new BusinessError.CustomError(3);
+                //    BusinessEntity.Cours oCours = new BusinessEntity.Cours();
+                //    oCours.IdCours = idCours;
+                //    oCours.code = code;
+                //    oCours.libellé = libellé;
+                //    oCours.last_modified = dt;
+                //    //oEtu.DisplayName = nom + prenom;
+                //    listToAdd.Add(oCours);
+                //    // DataAccessLayer.Etudiants.InsertETU(matricule, nom, prenom);
+
+                //}
+
+                DataAccessLayer.Cours.SaveAllTimeStamp( listCours);
             }
             catch (Exception e)
             {

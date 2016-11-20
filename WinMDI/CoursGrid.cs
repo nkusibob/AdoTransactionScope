@@ -35,7 +35,7 @@ namespace WinMDI
 
             DataView oView = (DataView)CoursGrid.DataSource;
 
-            BusinessLayer.Cours.SaveAllTransTimeStamp(oView);
+            BusinessLayer.Cours.SaveAllTrans(oView);
         }
 
         private void btn_searchCours_Click(object sender, EventArgs e)

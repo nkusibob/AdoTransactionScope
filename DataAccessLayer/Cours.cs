@@ -331,7 +331,7 @@ namespace DataAccessLayer
 
         }
 
-        public static void SaveAllTimeStamp(List<string> toDel, List<BusinessEntity.Cours> ListToUpdate, List<BusinessEntity.Cours> listToAdd)
+        public static void SaveAllTimeStamp( List<BusinessEntity.Cours> ListToUpdates)
         {
             //uodate
             SqlCommand oUpd
@@ -343,7 +343,7 @@ namespace DataAccessLayer
                 clsDatabase.oDataBase.Open();
                 oTrans = clsDatabase.oDataBase.BeginTransaction();
 
-                foreach (var cours in ListToUpdate)
+                foreach (var cours in ListToUpdates)
                 {
                     oUpd = new SqlCommand();
                     oUpd.Connection = clsDatabase.oDataBase;
@@ -361,6 +361,7 @@ namespace DataAccessLayer
                     oUpd.Parameters.Add(oParamLastModified);
                     oUpd.Parameters.Add(oParamID);
                     int RowsModified = oUpd.ExecuteNonQuery();
+
                     if (RowsModified == 0)
                     {
                         oTrans.Commit();
@@ -469,7 +470,7 @@ namespace DataAccessLayer
                     oUpd.Parameters.Add(oParamCode);
                     oUpd.Parameters.Add(oParamLibellé);
 
-                     RowsModified1 = oUpd.ExecuteNonQuery();
+                   RowsModified1 = oUpd.ExecuteNonQuery();
 
                    
 
@@ -485,36 +486,39 @@ namespace DataAccessLayer
                     SqlParameter oParamId = new SqlParameter("@idCours", cours.IdCours);
                     SqlParameter oParamCode = new SqlParameter("@code", cours.code);
                     SqlParameter oParamLibellé = new SqlParameter("@libellé", cours.libellé);
-
+                    SqlParameter oParamDt = new SqlParameter("@last_modified", cours.last_modified);
 
 
                     oUpd.Parameters.Add(oParamCode);
                     oUpd.Parameters.Add(oParamLibellé);
                     oUpd.Parameters.Add(oParamId);
-                    RowsModified2 = oUpd.ExecuteNonQuery();
-
+                    oUpd.Parameters.Add(oParamDt);
+                    int RowsModified = oUpd.ExecuteNonQuery();
+                    if(RowsModified == 0){
+                        throw new Exception();
+                    }
 
 
 
                 }
-                foreach (var cours in ListToUpdate)
-                {
-                    oUpd = new SqlCommand();
-                    oUpd.Connection = clsDatabase.oDataBase;
-                    oUpd.Transaction = oTrans;
-                    oUpd.CommandType = CommandType.StoredProcedure;
-                    oUpd.CommandText = "UpdateByLibellé";
-                    SqlParameter oParamLibellé = new SqlParameter("@Libellé", cours.libellé);
-                    SqlParameter oParamCode = new SqlParameter("@code", cours.code);
-                    SqlParameter oParamId = new SqlParameter("@idCours", cours.IdCours);
+                //foreach (var cours in ListToUpdate)
+                //{
+                //    oUpd = new SqlCommand();
+                //    oUpd.Connection = clsDatabase.oDataBase;
+                //    oUpd.Transaction = oTrans;
+                //    oUpd.CommandType = CommandType.StoredProcedure;
+                //    oUpd.CommandText = "UpdateByLibellé";
+                //    SqlParameter oParamLibellé = new SqlParameter("@Libellé", cours.libellé);
+                //    SqlParameter oParamCode = new SqlParameter("@code", cours.code);
+                //    SqlParameter oParamId = new SqlParameter("@idCours", cours.IdCours);
 
 
 
-                    oUpd.Parameters.Add(oParamCode);
-                    oUpd.Parameters.Add(oParamLibellé);
-                    oUpd.Parameters.Add(oParamId);
+                //    oUpd.Parameters.Add(oParamCode);
+                //    oUpd.Parameters.Add(oParamLibellé);
+                //    oUpd.Parameters.Add(oParamId);
 
-                    RowsModified2 = oUpd.ExecuteNonQuery();
+                //    RowsModified2 = oUpd.ExecuteNonQuery();
 
                    /// if (RowsModified2 == 0 )
                    // {
@@ -530,7 +534,7 @@ namespace DataAccessLayer
                  //   }
 
 
-                }
+               // }
 
                 //insert
                 foreach (var cours in ListToInsert)
@@ -588,6 +592,10 @@ namespace DataAccessLayer
 
                 throw new BusinessError.CustomError(IdError);
 
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
             finally
