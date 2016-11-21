@@ -239,7 +239,7 @@ namespace BusinessLayer
                 List<BusinessEntity.studentTest> listToAdd = new List<BusinessEntity.studentTest>();
                 foreach (DataRowView oRow in poViewData)
                 {
-                    int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
+                    int ID = Convert.ToInt32(oRow["ETU_ID"]);
                     string matricule = oRow["ETU_MATRICULE"].ToString();
                     string nom = oRow["ETU_nom"].ToString();
                     string prenom = oRow["ETU_prenom"].ToString();

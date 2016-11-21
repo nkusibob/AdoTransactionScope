@@ -588,7 +588,7 @@ namespace DataAccessLayer
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw;
             }
 
             finally
