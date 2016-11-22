@@ -48,7 +48,7 @@ namespace BusinessLayer
                         string Matricule = oRow["ETU_MATRICULE"].ToString();
                         string nom = oRow["ETU_nom"].ToString();
                         string prenom = oRow["ETU_prenom"].ToString();
-                        string cours = oRow["cours"].ToString();
+                        int cours =  Convert.ToInt32(oRow["ETU_COURS"]);
                         DateTime timeStamp = Convert.ToDateTime(oRow["last_modified"]);
 
                         if (Matricule.Length < 5)
@@ -64,7 +64,7 @@ namespace BusinessLayer
                         string matricule = oRow["ETU_MATRICULE"].ToString();
                         string nom = oRow["ETU_nom"].ToString();
                         string prenom = oRow["ETU_prenom"].ToString();
-                        string cours = oRow["cours"].ToString();
+                        int cours = Convert.ToInt32(oRow["ETU_COURS"]);
                         if (matricule.Length < 5)
                             throw new BusinessError.CustomError(3);
                         DataAccessLayer.Etudiants.InsertETU(matricule, nom, prenom,cours);
@@ -117,13 +117,14 @@ namespace BusinessLayer
                         MessageBox.Show(oRow["ETU_ID"].ToString());
                         int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
                         string Matricule = oRow["ETU_MATRICULE"].ToString();
-                       
+                       int cours = Convert.ToInt32(oRow["ETU_COURS"]);
 
-                        if (Matricule.Length < 5)
+                    if (Matricule.Length < 5)
                             throw new BusinessError.CustomError(3);
                         BusinessEntity.Etudiant oEtu = new BusinessEntity.Etudiant();
                         oEtu.Matricule = Matricule;
                         oEtu.ID = ID;
+                    oEtu.cours = cours;
                         listEtu.Add(oEtu);
 
 
@@ -138,11 +139,12 @@ namespace BusinessLayer
                         string matricule = oRow["ETU_MATRICULE"].ToString();
                         string nom = oRow["ETU_nom"].ToString();
                         string prenom = oRow["ETU_prenom"].ToString();
-                        string cours = oRow["cours"].ToString();
+                        int cours = Convert.ToInt32(oRow["ETU_COURS"]);
                     if (matricule.Length < 5)
                             throw new BusinessError.CustomError(3);
                         BusinessEntity.Etudiant oEtu = new BusinessEntity.Etudiant();
                         oEtu.Matricule = matricule;
+                        oEtu.cours = cours;
                         oEtu.ID = ID;
                         oEtu.DisplayName = nom + prenom;
                         listToAdd.Add(oEtu);
@@ -176,7 +178,7 @@ namespace BusinessLayer
                     string Matricule = oRow["ETU_MATRICULE"].ToString();
                     string nom = oRow["ETU_nom"].ToString();
                     string prenom = oRow["ETU_prenom"].ToString();
-                    string cours = oRow["cours"].ToString();
+                    int cours = Convert.ToInt32(oRow["ETU_COURS"]);
                     DateTime timeStamp = Convert.ToDateTime(oRow["ETU_LASTMODIFIED"]);
 
                     if (Matricule.Length < 5)
@@ -216,7 +218,7 @@ namespace BusinessLayer
                     MessageBox.Show(oRow["ETU_ID"].ToString());
                     int ID = Convert.ToInt32(oRow["ETU_ID"].ToString());
                     string Matricule = oRow["ETU_MATRICULE"].ToString();
-                    string cours = oRow["cours"].ToString();
+                    int cours = Convert.ToInt32(oRow["ETU_COURS"]);
                     string nom = oRow["ETU_nom"].ToString();
                     string prenom = oRow["ETU_prenom"].ToString();
                     DateTime dt =Convert.ToDateTime (oRow["ETU_LASTMODIFIED"]);
@@ -243,7 +245,7 @@ namespace BusinessLayer
                     string matricule = oRow["ETU_MATRICULE"].ToString();
                     string nom = oRow["ETU_nom"].ToString();
                     string prenom = oRow["ETU_prenom"].ToString();
-                    string cours = oRow["cours"].ToString();
+                    int cours = Convert.ToInt32(oRow["ETU_COURS"]);
                     if (matricule.Length < 5)
                         throw new BusinessError.CustomError(3);
 
@@ -368,7 +370,7 @@ namespace BusinessLayer
 
                 oEtudiant.ID = Convert.ToInt32(oRow["ETU_ID"]);
                 oEtudiant.Matricule = oRow["ETU_MATRICULE"].ToString();
-                oEtudiant.cours = oRow["cours"].ToString();
+                oEtudiant.cours = Convert.ToInt32(oRow["ETU_COURS"]);
                 oEtudiant.last_modified = Convert.ToDateTime(oRow["ETU_LASTMODIFIED"]);
 
                 if (oEtudiant.Matricule.Length < 5)
@@ -394,7 +396,7 @@ namespace BusinessLayer
 
                 oEtudiant.ID = Convert.ToInt32(oRow["ETU_ID"]);
                 oEtudiant.Matricule = oRow["ETU_MATRICULE"].ToString();
-                oEtudiant.cours = oRow["cours"].ToString();
+                oEtudiant.cours = Convert.ToInt32(oRow["ETU_COURS"]);
 
 
                 if (oEtudiant.Matricule.Length < 5)

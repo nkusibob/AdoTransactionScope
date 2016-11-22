@@ -16,6 +16,6 @@ namespace BusinessEntity
         public string prenom { get; set; }
         public DateTime last_modified { get; set; }
 
-        public string cours { get; set; }
+        public int cours { get; set; }
     }
 }

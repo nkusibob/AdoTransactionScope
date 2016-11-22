@@ -539,14 +539,14 @@ namespace DataAccessLayer
                     oIns.CommandText = "Cours_Create";
                     SqlParameter oParamCode = new SqlParameter("@code", cours.code);
                     SqlParameter oParamLibellé = new SqlParameter("@libellé", cours.libellé);
-                    SqlParameter oParamIdCours = new SqlParameter("@idCours", cours.IdCours);
+                    //SqlParameter oParamIdCours = new SqlParameter("@idCours", cours.IdCours);
 
-
+                    SqlParameter oParamIdMaxEtu= new SqlParameter("@max_etu", cours.IdCours);
 
                     oIns.Parameters.Add(oParamCode);
                     oIns.Parameters.Add(oParamLibellé);
-                    oIns.Parameters.Add(oParamIdCours);
-
+                    //oIns.Parameters.Add(oParamIdCours);
+                    oIns.Parameters.Add(oParamIdMaxEtu);
                     int RowsModified = oIns.ExecuteNonQuery();
 
                     if (RowsModified == 0)

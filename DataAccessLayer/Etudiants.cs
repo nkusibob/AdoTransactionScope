@@ -546,7 +546,7 @@ namespace DataAccessLayer
 
             }
         }
-        public static void UpdateMatricule(string pMAtricule, int pID,DateTime dt,string cours,string nom,string prenom)
+        public static void UpdateMatricule(string pMAtricule, int pID,DateTime dt,int cours,string nom,string prenom)
         {
             SqlCommand oUpd
                 = new SqlCommand();
@@ -667,7 +667,7 @@ namespace DataAccessLayer
             }
 
         }
-        public static void InsertETU(string pMAtricule, string nom,string prenom,string cours)
+        public static void InsertETU(string pMAtricule, string nom,string prenom,int cours)
         {
             SqlCommand oUpd
                 = new SqlCommand();

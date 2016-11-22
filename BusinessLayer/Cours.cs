@@ -11,7 +11,7 @@ namespace BusinessLayer
 {
     public static class Cours
     {
-        public static void LoadAllMatricule(ref DataSet oDataSet)
+        public static void LoadAllCours(ref DataSet oDataSet)
         {
             DataSet oData;
 
@@ -42,20 +42,20 @@ namespace BusinessLayer
                 MessageBox.Show(ex.Message);
             }
         }
-        public static void LoadAllMatricule(ref DataTable oDataTable)
+        public static void LoadAllCours(ref DataTable oDataTable)
         {
             DataSet oDataBis = new DataSet();
 
-            LoadAllMatricule(ref oDataBis);
+            LoadAllCours(ref oDataBis);
 
             oDataTable = oDataBis.Tables[0];
         }
 
-        public static void LoadAllMatricule(ref DataView oDataView)
+        public static void LoadAllCours(ref DataView oDataView)
         {
             DataTable oDataBis = new DataTable();
 
-            LoadAllMatricule(ref oDataBis);
+            LoadAllCours(ref oDataBis);
 
             oDataView = oDataBis.DefaultView;
         }
@@ -63,16 +63,16 @@ namespace BusinessLayer
         {
             DataView oDataView = new DataView();
 
-            LoadAllMatricule(ref oDataView);
+            LoadAllCours(ref oDataView);
 
             foreach (DataRowView oRow in oDataView)
             {
                 BusinessEntity.Cours ocours = new BusinessEntity.Cours();
 
-                ocours.IdCours = oRow["IdCours"].ToString();
+                ocours.IdCours =Convert.ToInt32 (oRow["id"]);
                 ocours.code = oRow["code"].ToString();
                 ocours.libellé = oRow["libellé"].ToString();
-                ocours.last_modified = Convert.ToDateTime( oRow["libellé"].ToString());
+                ocours.last_modified = Convert.ToDateTime( oRow["last_modified"]);
 
                 //if (ocours.IdCours.Length < 5)
                 //    throw new BusinessError.CustomError(7);
@@ -115,18 +115,18 @@ namespace BusinessLayer
                 foreach (DataRowView oRow in poViewData)
 
                 {
-                    string idCours = oRow["idCours"].ToString();
+                    int idCours =  Convert.ToInt32(oRow["id"]);
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
 
-                    DateTime dt =Convert.ToDateTime (oRow["last_modidfied"]);
+                   // DateTime dt =Convert.ToDateTime (oRow["last_modidfied"]);
                     //if (Matricule.Length < 5)
                     //    throw new BusinessError.CustomError(3);
                     BusinessEntity.Cours oCours = new BusinessEntity.Cours();
                     oCours.IdCours = idCours;
                     oCours.code = code;
                     oCours.libellé = libellé;
-                    oCours.last_modified = dt;
+                   // oCours.last_modified = dt;
                     listCours.Add(oCours);
 
 
@@ -137,18 +137,20 @@ namespace BusinessLayer
                 List<BusinessEntity.Cours> listToAdd = new List<BusinessEntity.Cours>();
                 foreach (DataRowView oRow in poViewData)
                 {
-                    string idCours = oRow["idCours"].ToString();
+                    //int idCours =Convert.ToInt32( oRow["id"]);
+                    int max_etu = Convert.ToInt32(oRow["max_etudiant"]);
                     string libellé = (oRow["libellé"].ToString());
-                    string code = oRow["code"].ToString();
-                    DateTime dt = Convert.ToDateTime(oRow["last_modified"]);
+                    string code = (oRow["code"]).ToString();
+                    //DateTime dt = Convert.ToDateTime(oRow["last_modidfied"]);
                     //if (matricule.Length < 5)
                     //    throw new BusinessError.CustomError(3);
                     BusinessEntity.Cours oCours = new BusinessEntity.Cours();
-                    oCours.IdCours = idCours;
+                    oCours.max_etu = max_etu;
+                    //oCours.IdCours = idCours;
                     oCours.code = code;
                     oCours.libellé = libellé;
-                    oCours.last_modified = dt;
-                    //oEtu.DisplayName = nom + prenom;
+                    //oCours.last_modified = dt;
+                   
                     listToAdd.Add(oCours);
                     // DataAccessLayer.Etudiants.InsertETU(matricule, nom, prenom);
 
@@ -190,7 +192,7 @@ namespace BusinessLayer
                 foreach (DataRowView oRow in poViewData)
 
                 {
-                    string idCours = oRow["idCours"].ToString();
+                    int idCours = Convert.ToInt32(oRow["id"]);
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
                     DateTime dt = Convert.ToDateTime(oRow["last_modidfied"]);

@@ -14,6 +14,6 @@ namespace BusinessEntity
 
         public string libellé { get; set; }
 
-        public string cours { get; set; }
+        public int cours { get; set; }
     }
 }

@@ -8,9 +8,11 @@ namespace BusinessEntity
 {
    public  class Cours
     {
+        public int max_etu;
+
         public string code { get; set; }
         public string libellé { get; set; }
-        public string IdCours { get; set; }
+        public int IdCours { get; set; }
         public DateTime last_modified { get; set; }
     }
 }

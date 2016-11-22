@@ -24,7 +24,7 @@ namespace WinMDI
 
             DataView oData = new DataView();
 
-            BusinessLayer.Cours.LoadAllMatricule(ref oData);
+            BusinessLayer.Cours.LoadAllCours(ref oData);
 
             CoursGrid.DataSource = oData;
         }
@@ -50,7 +50,7 @@ namespace WinMDI
                 DataSet
                     oData = new DataSet();
 
-                BusinessLayer.Cours.LoadAllMatricule(ref oData);
+                BusinessLayer.Cours.LoadAllCours(ref oData);
                 string search = "code like '%" + SearchCours.Text + "%'";
                 var dt = oData.Tables[0].DefaultView;
                 var dt2 = oData.Tables[0].DefaultView;
