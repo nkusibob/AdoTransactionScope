@@ -118,15 +118,16 @@ namespace BusinessLayer
                     int idCours =  Convert.ToInt32(oRow["id"]);
                     string libellé = (oRow["libellé"].ToString());
                     string code = oRow["code"].ToString();
-
-                   // DateTime dt =Convert.ToDateTime (oRow["last_modidfied"]);
+                    int max_etu = Convert.ToInt32(oRow["max_etudiant"]);
+                    DateTime dt =Convert.ToDateTime (oRow["last_modidfied"]);
                     //if (Matricule.Length < 5)
                     //    throw new BusinessError.CustomError(3);
                     BusinessEntity.Cours oCours = new BusinessEntity.Cours();
                     oCours.IdCours = idCours;
+                    oCours.max_etu = max_etu;
                     oCours.code = code;
                     oCours.libellé = libellé;
-                   // oCours.last_modified = dt;
+                   oCours.last_modified = dt;
                     listCours.Add(oCours);
 
 

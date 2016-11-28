@@ -448,27 +448,27 @@ namespace DataAccessLayer
 
                 int RowsModified1 = 0;
                 int RowsModified2 = 0;
-                foreach (var cours in ListToUpdate)
-                {
-                    oUpd = new SqlCommand();
-                    oUpd.Connection = clsDatabase.oDataBase;
-                    oUpd.Transaction = oTrans;
-                    oUpd.CommandType = CommandType.StoredProcedure;
-                    oUpd.CommandText = "UpdateByCode";
-                    SqlParameter oParamCode = new SqlParameter("@code", cours.code);
-                    SqlParameter oParamLibellé = new SqlParameter("@libellé", cours.libellé);
+                //foreach (var cours in ListToUpdate)
+                //{
+                //    oUpd = new SqlCommand();
+                //    oUpd.Connection = clsDatabase.oDataBase;
+                //    oUpd.Transaction = oTrans;
+                //    oUpd.CommandType = CommandType.StoredProcedure;
+                //    oUpd.CommandText = "UpdateByCode";
+                //    SqlParameter oParamCode = new SqlParameter("@code", cours.code);
+                //    SqlParameter oParamLibellé = new SqlParameter("@libellé", cours.libellé);
 
 
 
-                    oUpd.Parameters.Add(oParamCode);
-                    oUpd.Parameters.Add(oParamLibellé);
+                //    oUpd.Parameters.Add(oParamCode);
+                //    oUpd.Parameters.Add(oParamLibellé);
 
-                   RowsModified1 = oUpd.ExecuteNonQuery();
+                //   RowsModified1 = oUpd.ExecuteNonQuery();
 
                    
 
 
-                }
+                //}
                 foreach (var cours in ListToUpdate)
                 {
                     oUpd = new SqlCommand();
@@ -476,12 +476,13 @@ namespace DataAccessLayer
                     oUpd.Transaction = oTrans;
                     oUpd.CommandType = CommandType.StoredProcedure;
                     oUpd.CommandText = "UpdateCoursByID";
-                    SqlParameter oParamId = new SqlParameter("@idCours", cours.IdCours);
+                    SqlParameter oParamId = new SqlParameter("@IdCours", cours.IdCours);
                     SqlParameter oParamCode = new SqlParameter("@code", cours.code);
                     SqlParameter oParamLibellé = new SqlParameter("@libellé", cours.libellé);
+                    SqlParameter oParamMaxEtu = new SqlParameter("@max_etudiant", cours.max_etu);
                     SqlParameter oParamDt = new SqlParameter("@last_modified", cours.last_modified);
 
-
+                    oUpd.Parameters.Add(oParamMaxEtu);
                     oUpd.Parameters.Add(oParamCode);
                     oUpd.Parameters.Add(oParamLibellé);
                     oUpd.Parameters.Add(oParamId);
@@ -541,7 +542,7 @@ namespace DataAccessLayer
                     SqlParameter oParamLibellé = new SqlParameter("@libellé", cours.libellé);
                     //SqlParameter oParamIdCours = new SqlParameter("@idCours", cours.IdCours);
 
-                    SqlParameter oParamIdMaxEtu= new SqlParameter("@max_etu", cours.IdCours);
+                    SqlParameter oParamIdMaxEtu= new SqlParameter("@max_etu", cours.max_etu);
 
                     oIns.Parameters.Add(oParamCode);
                     oIns.Parameters.Add(oParamLibellé);
