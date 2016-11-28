@@ -63,6 +63,9 @@ namespace BusinessError
                 case 12:
                     MyMessage = "ce cours a déjà été modifié ,rechargez pour avoir les données actuelles";
                     break;
+                case 13:
+                    MyMessage = "max etudiants atteint pour ce cours";
+                    break;
                 default:
                     MyMessage = "Erreur non connue...";
                     _ID = 999;

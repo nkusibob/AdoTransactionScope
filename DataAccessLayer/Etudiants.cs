@@ -462,8 +462,8 @@ namespace DataAccessLayer
                 {
                     //roll back avant n'importe quel traitement 
                     //après on renvoie l'erreur business,...
-                    oTrans.Rollback();
-                    int IdError = 999;
+                    //oTrans.Rollback();
+                    int IdError=999;
                     switch (exSQL.Number)
                     {
                         case 18456:
@@ -472,10 +472,17 @@ namespace DataAccessLayer
                         case 8152:
                             IdError = 5;
                             break;
+                        case 50000:
+                            IdError = 13;
+                            break;
                     }
 
                     throw new BusinessError.CustomError(IdError);
 
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
 
                 finally

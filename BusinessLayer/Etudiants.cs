@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 using BusinessEntity;
+using System.Data.SqlClient;
 
 namespace BusinessLayer
 {
@@ -73,9 +74,23 @@ namespace BusinessLayer
                     ts.Complete();
 
                 }
-                catch (Exception e)
+                catch (SqlException e)
                 {
-                    MessageBox.Show(e.Message);
+                    int IdError = 999;
+                    switch (e.Number)
+                    {
+                        case 18456:
+                            IdError = 1;
+                            break;
+                        case 8152:
+                            IdError = 5;
+                            break;
+                        case 50000:
+                            IdError = 13;
+                            break;
+                    }
+
+                    throw new BusinessError.CustomError(IdError);
                 }
 
 
@@ -202,15 +217,15 @@ namespace BusinessLayer
 
         public static void SaveAllTransMDI(DataView poViewData)
         {
-           
+
 
             try
             {
-               
+
 
                 poViewData.RowStateFilter = DataViewRowState.ModifiedCurrent;
 
-                
+
                 List<BusinessEntity.studentTest> listEtu = new List<BusinessEntity.studentTest>();
                 foreach (DataRowView oRow in poViewData)
 
@@ -221,7 +236,7 @@ namespace BusinessLayer
                     int cours = Convert.ToInt32(oRow["ETU_COURS"]);
                     string nom = oRow["ETU_nom"].ToString();
                     string prenom = oRow["ETU_prenom"].ToString();
-                    DateTime dt =Convert.ToDateTime (oRow["ETU_LASTMODIFIED"]);
+                    DateTime dt = Convert.ToDateTime(oRow["ETU_LASTMODIFIED"]);
                     if (Matricule.Length < 5)
                         throw new BusinessError.CustomError(3);
                     BusinessEntity.studentTest oEtu = new BusinessEntity.studentTest();
@@ -256,18 +271,18 @@ namespace BusinessLayer
                     oEtu.prenom = prenom;
                     oEtu.cours = cours;
                     listToAdd.Add(oEtu);
-                   //DataAccessLayer.Etudiants.InsertETU(matricule, nom, prenom,cours);
+                    //DataAccessLayer.Etudiants.InsertETU(matricule, nom, prenom,cours);
 
                 }
 
-                DataAccessLayer.Etudiants.SaveAllMDI( listEtu, listToAdd);
+                DataAccessLayer.Etudiants.SaveAllMDI(listEtu, listToAdd);
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
                 MessageBox.Show(e.Message);
+
+
             }
-
-
         }
         public static void DeleteToDB(int id)
         {
